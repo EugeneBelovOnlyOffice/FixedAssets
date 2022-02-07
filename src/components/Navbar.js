@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { LOGIN_ROUTE } from "../utils/consts";
 import { Context } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Login from "./Login";
 
 const Navbar = () => {
   const { auth } = useContext(Context);
