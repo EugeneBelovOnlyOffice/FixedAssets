@@ -8,6 +8,10 @@ import { LOGIN_ROUTE } from "../utils/consts";
 import { Context } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "./Login";
+import { IconButton } from "@mui/material";
+import LaptopIcon from '@mui/icons-material/Laptop';
+import ComputerIcon from '@mui/icons-material/Computer';
+
 
 const Navbar = () => {
   const { auth } = useContext(Context);
@@ -20,9 +24,9 @@ const Navbar = () => {
             <Link to="/login">Login Link</Link>
           </Grid>
           <Grid item>
-            <Link style={{ flexGrow: 1 }} to="/chat">
-              Chat Link
-            </Link>
+            <IconButton color="inherit" href="/chat">
+            <ComputerIcon/>
+            </IconButton>
           </Grid>
         </Grid>
 
