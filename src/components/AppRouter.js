@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import{Route, Routes} from 'react-router-dom'
-import Login from './Login'
+
 import {privateRoutes, publicRoutes} from "../routes";
-import Chat from "./Chat";
+
 import {Context} from "../index"
 import {useAuthState} from "react-firebase-hooks/auth";
 

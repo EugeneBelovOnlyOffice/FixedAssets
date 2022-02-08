@@ -7,10 +7,11 @@ import Button from "@mui/material/Button";
 import { LOGIN_ROUTE } from "../utils/consts";
 import { Context } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Login from "./Login";
 import { IconButton } from "@mui/material";
-import LaptopIcon from '@mui/icons-material/Laptop';
-import ComputerIcon from '@mui/icons-material/Computer';
+import HomeIcon from '@mui/icons-material/Home';
+import ChatIcon from '@mui/icons-material/Chat';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+
 
 
 const Navbar = () => {
@@ -21,11 +22,18 @@ const Navbar = () => {
       <Toolbar variant="dense">
         <Grid container spacing={2}>
           <Grid item>
-            <Link to="/login">Login Link</Link>
+            <IconButton color="inherit" component={Link} to="/home">
+              <HomeIcon fontSize="large" color="primary"/>
+            </IconButton>
           </Grid>
           <Grid item>
-            <IconButton color="inherit" href="/chat">
-            <ComputerIcon/>
+            <IconButton color="inherit" component={Link} to="/list">
+              <FormatListBulletedIcon fontSize="large" color="primary"/>
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton color="inherit" component={Link} to="/chat">
+            <ChatIcon fontSize="large" color="primary"/>
             </IconButton>
           </Grid>
         </Grid>
