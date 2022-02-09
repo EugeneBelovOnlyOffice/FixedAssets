@@ -11,6 +11,7 @@ import { IconButton } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import ComputerIcon from '@mui/icons-material/Computer';
 
 
 
@@ -28,7 +29,7 @@ const Navbar = () => {
           </Grid>
           <Grid item>
             <IconButton color="inherit" component={Link} to="/list">
-              <FormatListBulletedIcon fontSize="large" color="primary"/>
+              <ComputerIcon fontSize="large" color="primary"/>
             </IconButton>
           </Grid>
           <Grid item>

@@ -23,9 +23,13 @@ export default function SelectItem() {
                     label="Age"
                     onChange={handleChange}
                 >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value={10}>Desktop</MenuItem>
+                    <MenuItem value={20}>Laptop</MenuItem>
+                    <MenuItem value={30}>MFU</MenuItem>
+                    <MenuItem value={40}>Network Device</MenuItem>
+                    <MenuItem value={50}>Printer</MenuItem>
+                    <MenuItem value={60}>Server</MenuItem>
+                    <MenuItem value={70}>UPS</MenuItem>
                 </Select>
             </FormControl>
         </Box>
