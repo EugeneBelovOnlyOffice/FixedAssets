@@ -19,33 +19,33 @@ const Navbar = () => {
   const { auth } = useContext(Context);
   const [user] = useAuthState(auth);
   return (
-    <AppBar color={""} position="static">
+    <AppBar color="" position="static">
       <Toolbar variant="dense">
         <Grid container spacing={2}>
           <Grid item>
-            <IconButton color="inherit" component={Link} to="/home">
+            <IconButton component={Link} to="/home">
               <HomeIcon fontSize="large" color="primary"/>
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton color="inherit" component={Link} to="/list">
+            <IconButton component={Link} to="/list">
               <ComputerIcon fontSize="large" color="primary"/>
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton color="inherit" component={Link} to="/chat">
+            <IconButton component={Link} to="/chat">
             <ChatIcon fontSize="large" color="primary"/>
             </IconButton>
           </Grid>
         </Grid>
 
         {user ? (
-          <Button onClick={() => auth.signOut()} variant={"outlined"}>
+          <Button color="primary" onClick={() => auth.signOut()} variant={"outlined"}>
             Exit
           </Button>
         ) : (
           <NavLink to={LOGIN_ROUTE}>
-            <Button variant={"outlined"}>Login</Button>
+            <Button color="primary" variant={"outlined"}>Login</Button>
           </NavLink>
         )}
       </Toolbar>
