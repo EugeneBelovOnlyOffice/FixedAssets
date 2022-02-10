@@ -10,7 +10,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { IconButton } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ComputerIcon from '@mui/icons-material/Computer';
 
 
