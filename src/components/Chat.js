@@ -1,29 +1,54 @@
 import React, { useContext, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { Context } from "../index";
+
+
 import { Button, Container, Grid, TextField } from "@mui/material";
-import firebase from 'firebase/app';
+
 import 'firebase/firestore';
 import 'firebase/auth';
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import {collection} from 'firebase/firestore'
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import {getFirestore,  doc, setDoc, Timestamp } from 'firebase/firestore'
+import {getAuth} from'firebase/auth'
+import { initializeApp } from "firebase/app";
+
+
 
 
 const Chat = () => {
-  const { auth, firestore } = useContext(Context);
+
+  const firebase = initializeApp({
+    apiKey: "AIzaSyA9Dddkvnkci9rwTeuc3XkpZx8zTcoVwPU",
+    authDomain: "fa-react-ccb7e.firebaseapp.com",
+    projectId: "fa-react-ccb7e",
+    storageBucket: "fa-react-ccb7e.appspot.com",
+    messagingSenderId: "1006667397553",
+    appId: "1:1006667397553:web:a5bca8c4ac072d9d0da590",
+    measurementId: "G-VDXT891RQ7"
+});
+
+const auth = getAuth(firebase)
+const db= getFirestore(firebase)
   const [user] = useAuthState(auth);
   const [value, setValue] = useState("");
+ 
+  
+  
+  
 
 
 
   const sendMessage = async () => {
 
+
       const data = {
-          name: user,
+          name: user.displayName,
           email: user.email,
           text: value
       };
-      await console.log (firestore)
+
+      const messagesRef = doc(db, 'messages',"chat");
+      await setDoc(messagesRef, data);
+     
 };
 
   
