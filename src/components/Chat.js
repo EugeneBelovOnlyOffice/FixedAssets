@@ -6,12 +6,14 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import {collection} from 'firebase/firestore'
 
 
 const Chat = () => {
   const { auth, firestore } = useContext(Context);
   const [user] = useAuthState(auth);
   const [value, setValue] = useState("");
+
 
 
   const sendMessage = async () => {
@@ -21,7 +23,7 @@ const Chat = () => {
           email: user.email,
           text: value
       };
-      await firestore().collection('messages').add(data)
+      await console.log (firestore)
 };
 
   
