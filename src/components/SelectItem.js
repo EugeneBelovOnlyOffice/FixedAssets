@@ -7,10 +7,10 @@ import Select from "@mui/material/Select";
 import AddItem from "./AddItem";
 
 export default function SelectItem() {
-  const [age, setAge] = React.useState("");
+  const [device, setDevice] = React.useState("");
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+const handleChange = (event) => {
+    setDevice(event.target.value);
   };
 
   return (
@@ -21,8 +21,8 @@ export default function SelectItem() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
+          value={device}
+          label="Device"
           onChange={handleChange}
         >
          

@@ -1,38 +1,102 @@
-import React from 'react'
-import { Grid, Paper, Avatar, Typography, TextField, } from '@mui/material'
-import Button from "@mui/material/Button";
-import FormControl from '@mui/material/FormControl';
-const ItemForm = () => {
-    const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
+import { Paper, Typography, TextField } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import React, { useContext, useState } from "react";
+import { Button, Grid } from "@mui/material";
+import { doc, collection, setDoc } from "firebase/firestore";
+import { Context } from "../index";
+import SelectItem from "./SelectItem";
 
-    const marginTop = { marginTop: 5 }
-    return (
-        <Grid>
-            <Paper elevation={20} style={paperStyle}>
-                <Grid align='center'>
+const ItemForm = (props) => {
+  const { firestore } = useContext(Context);
+  const [name, setName] = useState("");
+  const [model, setModel] = useState("");
+  const [sn, setSn] = useState("");
+  const [fa, setFa] = useState("");
+  const [owner, setOwner] = useState("");
+  const [responsible, setResponsible] = useState("");
+  const [dept, setDept] = useState("");
+  const [notes, setNotes] = useState("");
 
+  const messagesRef = collection(firestore, "computers");
 
-                    <Typography variant='caption' gutterBottom>Please fill this form to create an Item</Typography>
-                </Grid>
-                <form>
-                    <TextField fullWidth label='Name' placeholder="Select type" />
+  //Function sends obj to Firebase
 
-                    <TextField fullWidth label='Model' placeholder="Enter model" />
-                    <TextField fullWidth label='SN' placeholder="Enter SN" />
-                    <TextField fullWidth label='FA' placeholder="Enter inventory number" />
-                    <TextField fullWidth label='Owner' placeholder="Enter owner" />
-                    <TextField fullWidth label='Responcible' placeholder="Select responcible" />
-                    <TextField fullWidth label='Dept' placeholder="Select department" />
-                    <TextField fullWidth label='Notes' placeholder="Notes" />
-                    <FormControl component="fieldset" style={marginTop}>
+  const sendObj = async () => {
+    const data = { name, model, sn, fa, owner, responsible, dept, notes };
+    await setDoc(doc(messagesRef, name), data);
+  };
 
-                    </FormControl>
+  const paperStyle = { padding: "30px 20px", width: 300, margin: "20px auto" };
 
-                    <Button variant="outlined" color="primary" >Submit</Button>
-                </form>
-            </Paper>
+  const marginTop = { marginTop: 5 };
+  return (
+    <Grid>
+      <Paper elevation={20} style={paperStyle}>
+        <Grid align="center">
+          <Typography variant="caption" gutterBottom>
+            Please fill this form to create an Item
+          </Typography>
         </Grid>
-    )
-}
+        <form>
+          <SelectItem />
+          <TextField
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+            label="Name"
+            placeholder="Select type"
+          />
+
+          <TextField
+            onChange={(e) => setModel(e.target.value)}
+            fullWidth
+            label="Model"
+            placeholder="Enter model"
+          />
+          <TextField
+            onChange={(e) => setSn(e.target.value)}
+            fullWidth
+            label="SN"
+            placeholder="Enter SN"
+          />
+          <TextField
+            onChange={(e) => setFa(e.target.value)}
+            fullWidth
+            label="FA"
+            placeholder="Enter inventory number"
+          />
+          <TextField
+            onChange={(e) => setOwner(e.target.value)}
+            fullWidth
+            label="Owner"
+            placeholder="Enter owner"
+          />
+          <TextField
+            onChange={(e) => setResponsible(e.target.value)}
+            fullWidth
+            label="Responsible"
+            placeholder="Select responsible"
+          />
+          <TextField
+            onChange={(e) => setDept(e.target.value)}
+            fullWidth
+            label="Dept"
+            placeholder="Select department"
+          />
+          <TextField
+            onChange={(e) => setNotes(e.target.value)}
+            fullWidth
+            label="Notes"
+            placeholder="Notes"
+          />
+          <FormControl component="fieldset" style={marginTop}></FormControl>
+
+          <Button onClick={sendObj} variant="outlined" color="primary">
+            Submit
+          </Button>
+        </form>
+      </Paper>
+    </Grid>
+  );
+};
 
 export default ItemForm;

@@ -8,8 +8,7 @@ const List = () => {
   return (
 
    <>
-      <SelectItem />
-      <AddItem />
+     
       <ItemForm/>
 
   </>
