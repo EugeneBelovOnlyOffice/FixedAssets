@@ -5,8 +5,9 @@ import { Button, Grid } from "@mui/material";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { Context } from "../index";
 import SelectItem from "./SelectItem";
+import { DeviceContext } from "./SelectItem";
 
-const ItemForm = (props) => {
+const ItemForm = () => {
   const { firestore } = useContext(Context);
   const [name, setName] = useState("");
   const [model, setModel] = useState("");
@@ -17,7 +18,17 @@ const ItemForm = (props) => {
   const [dept, setDept] = useState("");
   const [notes, setNotes] = useState("");
 
-  const messagesRef = collection(firestore, "computers");
+
+  
+
+//Liffted state from SelectItem
+
+const [selectDevice, setDevice] = React.useState('Allпше');
+
+const handleChange = (event) => {
+  setDevice(event.target.value);
+};
+const messagesRef = collection(firestore, selectDevice);
 
   //Function sends obj to Firebase
 
@@ -38,7 +49,7 @@ const ItemForm = (props) => {
           </Typography>
         </Grid>
         <form>
-          <SelectItem />
+          <SelectItem handleChange = {handleChange} selectDevice={{selectDevice}}/>
           <TextField
             onChange={(e) => setName(e.target.value)}
             fullWidth
