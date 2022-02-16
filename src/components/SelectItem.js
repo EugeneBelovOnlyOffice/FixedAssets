@@ -10,9 +10,10 @@ import ItemForm from "./ItemForm";
 
 
 
-export default function SelectItem(props) {
-const {handleChange} = props.handleChange
-const {selectDevice} = props.selectDevice
+export default function SelectItem({handleChange},{selectDevice}) {
+
+  const [value, setValue] = React.useState();
+
   return (
   
 <>
@@ -25,19 +26,18 @@ const {selectDevice} = props.selectDevice
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={selectDevice}
+          value={value}
           label="Device"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e.target.value)}
         >
           <MenuItem value='All'>All</MenuItem>
-  
           <MenuItem value='Desktop'>Desktop</MenuItem>
           <MenuItem value='Laptop'>Laptop</MenuItem>
-          <MenuItem value={30}>MFU</MenuItem>
-          <MenuItem value={40}>Network Device</MenuItem>
-          <MenuItem value={50}>Printer</MenuItem>
-          <MenuItem value={90}>Server</MenuItem>
-          <MenuItem value={70}>UPS</MenuItem>
+          <MenuItem value='MFU'>MFU</MenuItem>
+          <MenuItem value='Network Device'>Network Device</MenuItem>
+          <MenuItem value='Printer'>Printer</MenuItem>
+          <MenuItem value='Server'>Server</MenuItem>
+          <MenuItem value='UPS'>UPS</MenuItem>
         </Select>
       </FormControl>
     </Box>

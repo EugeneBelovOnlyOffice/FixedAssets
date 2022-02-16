@@ -23,10 +23,10 @@ const ItemForm = () => {
 
 //Liffted state from SelectItem
 
-const [selectDevice, setDevice] = React.useState('Allпше');
+const [selectDevice, setDevice] = React.useState('All');
 
-const handleChange = (event) => {
-  setDevice(event.target.value);
+const handleChange = (selectDevice) => {
+  setDevice(selectDevice);
 };
 const messagesRef = collection(firestore, selectDevice);
 
@@ -49,7 +49,7 @@ const messagesRef = collection(firestore, selectDevice);
           </Typography>
         </Grid>
         <form>
-          <SelectItem handleChange = {handleChange} selectDevice={{selectDevice}}/>
+          <SelectItem handleChange = {handleChange.bind(this)} selectDevice={{selectDevice}}/>
           <TextField
             onChange={(e) => setName(e.target.value)}
             fullWidth
