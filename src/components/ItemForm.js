@@ -5,11 +5,10 @@ import { Button, Grid } from "@mui/material";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { Context } from "../index";
 import SelectItem from "./SelectItem";
-import { DeviceContext } from "./SelectItem";
+import SelectBrandName from "./SelectBrandName";
 
 const ItemForm = () => {
   const { firestore } = useContext(Context);
-  const [name, setName] = useState("");
   const [model, setModel] = useState("");
   const [sn, setSn] = useState("");
   const [fa, setFa] = useState("");
@@ -25,16 +24,26 @@ const ItemForm = () => {
 
 const [selectDevice, setDevice] = React.useState('All');
 
-const handleChange = (selectDevice) => {
+const handleChangeDevice = (selectDevice) => {
   setDevice(selectDevice);
 };
+
+//Liffted state from SelecBrandName
+const [selectBrand, setBrand] = React.useState('Other');
+
+const handleSelectBrand = (selectBrand) => {
+  setBrand(selectBrand);
+};
+
+ //Function sends obj to Firebase
+
 const messagesRef = collection(firestore, selectDevice);
 
   //Function sends obj to Firebase
 
   const sendObj = async () => {
-    const data = { name, model, sn, fa, owner, responsible, dept, notes };
-    await setDoc(doc(messagesRef, name), data);
+    const data = { selectBrand, model,sn, fa, owner, responsible, dept, notes };
+    await setDoc(doc(messagesRef, sn), data);
   };
 
   const paperStyle = { padding: "30px 20px", width: 300, margin: "20px auto" };
@@ -49,13 +58,9 @@ const messagesRef = collection(firestore, selectDevice);
           </Typography>
         </Grid>
         <form>
-          <SelectItem handleChange = {handleChange.bind(this)} selectDevice={{selectDevice}}/>
-          <TextField
-            onChange={(e) => setName(e.target.value)}
-            fullWidth
-            label="Name"
-            placeholder="Select type"
-          />
+          <SelectItem handleChangeDevice = {handleChangeDevice.bind(this)} selectDevice={{selectDevice}}/>
+          <SelectBrandName handleSelectBrand = {handleSelectBrand.bind(this)} selectBrand={{selectBrand}}/>
+          
 
           <TextField
             onChange={(e) => setModel(e.target.value)}
