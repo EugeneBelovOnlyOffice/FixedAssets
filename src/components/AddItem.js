@@ -1,13 +1,13 @@
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { IconButton } from "@mui/material";
-import ItemForm from "./ItemForm";
 
 
-const AddItem = () => {
+
+const AddItem = ({ handleAddNewDevice },{addNewDevice}) => {
   return (
-    <IconButton color="inherit">
-      <AddIcon fontSize="large" color="primary" />
+    <IconButton onClick={()=>handleAddNewDevice()} color="inherit">
+      <AddIcon  fontSize="large" color="primary" />
     </IconButton>
 
   );

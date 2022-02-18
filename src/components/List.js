@@ -5,11 +5,20 @@ import SelectItem from "./SelectItem";
 import AddItem from "./AddItem";
 
 const List = () => {
+  const [addNewDevice, setNewDevice] = React.useState('');
+
+  const handleAddNewDevice = (addNewDevice) => {
+    setNewDevice(addNewDevice);
+return ItemForm
+
+  };
+  
+
   return (
 
    <>
-     
-      <ItemForm/>
+     <AddItem handleAddNewDevice={handleAddNewDevice} addNewDevice={{addNewDevice}}/>
+{handleAddNewDevice}
 
   </>
   );
