@@ -1,26 +1,17 @@
 import React from "react";
-import ItemForm from "./ItemForm";
-
-import SelectItem from "./SelectItem";
-import AddItem from "./AddItem";
+import AddIcon from "@mui/icons-material/Add";
+import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
+import DataTable from "./DataTable";
 
 const List = () => {
-  const [addNewDevice, setNewDevice] = React.useState('');
-
-  const handleAddNewDevice = (addNewDevice) => {
-    setNewDevice(addNewDevice);
-return ItemForm
-
-  };
-  
-
   return (
-
-   <>
-     <AddItem handleAddNewDevice={handleAddNewDevice} addNewDevice={{addNewDevice}}/>
-{handleAddNewDevice}
-
-  </>
+    <>
+      <IconButton component={Link} to="/add" color="inherit">
+        <AddIcon fontSize="large" color="primary" />
+      </IconButton>
+      <DataTable/>
+    </>
   );
 };
 

@@ -32,9 +32,7 @@ const Navbar = () => {
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton component={Link} to="/chat">
-            <ChatIcon fontSize="large" color="primary"/>
-            </IconButton>
+         
           </Grid>
         </Grid>
 
