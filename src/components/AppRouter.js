@@ -20,7 +20,7 @@ const AppRouter = () => {
            :
            (
                <Routes>
-                   {publicRoutes.map(({path, element}) =><Route path={path} element={element}/>)}
+                   {publicRoutes.map(({path, element}) =><Route key={path} path={path} element={element}/>)}
 
                </Routes>
            )
