@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export default function SelectBrandName({ handleSelectBrand },{selectBrand}) {
-    const [value, setValue] = React.useState();
+ 
   
     return (
       <>
@@ -16,7 +16,7 @@ export default function SelectBrandName({ handleSelectBrand },{selectBrand}) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={value}
+              value={selectBrand}
               label="Brand"
               onChange={(e) => handleSelectBrand(e.target.value)}
             >

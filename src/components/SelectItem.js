@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export default function SelectItem({ handleChangeDevice },{selectDevice}) {
-  const [value, setValue] = React.useState();
+
 
   return (
     <>
@@ -16,11 +16,11 @@ export default function SelectItem({ handleChangeDevice },{selectDevice}) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={value}
+            value={selectDevice}
             label="Device"
             onChange={(e) => handleChangeDevice(e.target.value)}
           >
-            <MenuItem value="All">All</MenuItem>
+           
             <MenuItem value="Desktop">Desktop</MenuItem>
             <MenuItem value="Laptop">Laptop</MenuItem>
             <MenuItem value="MFU">MFU</MenuItem>

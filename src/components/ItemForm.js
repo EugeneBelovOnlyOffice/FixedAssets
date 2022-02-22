@@ -22,7 +22,7 @@ const ItemForm = () => {
 
 //Liffted state from SelectItem
 
-const [selectDevice, setDevice] = React.useState('All');
+const [selectDevice, setDevice] = React.useState('Desktop');
 
 const handleChangeDevice = (selectDevice) => {
   setDevice(selectDevice);
