@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Context } from "../index"
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  getDoc,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
 
 const ItemCard = ({
   dept,
@@ -14,8 +24,22 @@ const ItemCard = ({
   responsible,
   selectBrand,
   key,
-  sn
+  sn,
+  selectDevice
 }) => {
+
+  const { firestore } = useContext(Context);
+ 
+  const docRef = doc(firestore, selectDevice, sn);
+
+  const pullDoc = async () => {
+    const docSnap = await getDoc(docRef);
+  console.log(docSnap.data())
+
+  };
+
+
+
   return (
     <Card sx={{ maxWidth: 200 }}>
       <CardActionArea>
@@ -32,7 +56,7 @@ const ItemCard = ({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button onClick={()=>pullDoc()} size="small" color="primary">
           Edit
         </Button>
       </CardActions>

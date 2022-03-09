@@ -65,6 +65,7 @@ const List = () => {
           owner={item.owner}
           responsible={item.responsible}
           selectBrand={item.selectBrand}
+          selectDevice={selectDevice}
         />
       ))}
     </>
