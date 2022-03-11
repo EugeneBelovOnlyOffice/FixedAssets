@@ -26,6 +26,10 @@ const List = () => {
     setDevice(selectDevice);
   };
 
+
+
+
+
   const { firestore } = useContext(Context);
   const q = query(collection(firestore, selectDevice));
 
@@ -36,6 +40,7 @@ const List = () => {
       items.push(doc.data());
     });
     setfirebaseArray(items);
+    
     console.log(firebaseArray);
   };
 
@@ -57,7 +62,7 @@ const List = () => {
         Pull
       </Button>
       {firebaseArray.map((item) => (
-        <ItemCard sn={item.sn}
+        <ItemCard key={item.sn} sn={item.sn}
           dept={item.dept}
           fa={item.fa}
           model={item.model}
