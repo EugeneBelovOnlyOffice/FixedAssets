@@ -22,7 +22,7 @@ const List = () => {
 
   const [selectDevice, setDevice] = React.useState("Desktop");
   const [firebaseArray, setfirebaseArray] = useState([]);
-  const [param, setParam] = useState('');
+
 
   const handleChangeDevice = (selectDevice) => {
     setDevice(selectDevice);
@@ -46,7 +46,7 @@ const List = () => {
   };
 
   const pullOnChange = async (event) => {   
-setParam(event)
+
 console.log(event)
 const q = query(col, where("fa", "==", event));
 const querySnapshot = await getDocs(q);
