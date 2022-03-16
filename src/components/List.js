@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { IconButton, Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
-import DataTable from "./DataTable";
 import {
   collection,
   query,
@@ -16,6 +15,7 @@ import { Context } from "../index";
 import SelectItem from "./SelectItem";
 import ItemCard from "../FACards/ItemCard";
 import { async } from "@firebase/util";
+import { CSVLink, CSVDownload } from "react-csv";
 
 const List = () => {
   //Liffted state from SelectItem
@@ -30,7 +30,7 @@ const List = () => {
 
   const { firestore } = useContext(Context);
   const col = collection(firestore, selectDevice);
- // const q = query(col, where("fa", "==", param));
+
 
   const pullCollection = async () => {
     const q = query(col);
@@ -60,6 +60,18 @@ console.log(firebaseArray);
  
   }
 
+  const headers = [
+
+    { label: "Department", key: "dept" },
+    { label: "Responsible", key: "responsible" },
+    { label: "Owner", key: "owner" },
+    { label: "Serial", key: "sn" },
+    { label: "Model", key: "model" },
+    { label: "Brand", key: "selectBrand" },
+    { label: "Inventory number", key: "fa" },
+    { label: "Notes", key: "notes" },
+  ]
+
 
   return (
     <>
@@ -78,6 +90,7 @@ console.log(firebaseArray);
       >
         Pull
       </Button>
+      <CSVLink data={firebaseArray} filename={'download.csv'} headers={headers}>Download</CSVLink>;
       {firebaseArray.map((item) => (
         <ItemCard
           key={item.sn}
