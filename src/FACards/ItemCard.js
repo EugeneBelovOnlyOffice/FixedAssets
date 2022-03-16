@@ -1,10 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Paper, Typography, TextField } from "@mui/material";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import { Context } from "../index"
+import { Context } from "../index";
 import {
   collection,
   query,
@@ -27,25 +27,20 @@ const ItemCard = ({
   responsible,
   selectBrand,
   sn,
-  selectDevice
+  selectDevice,
 }) => {
-
   const [chNotes, setNt] = useState(notes);
 
   const { firestore } = useContext(Context);
- 
+
   const docRef = doc(firestore, selectDevice, sn);
-  notes=chNotes
-  const data = { selectBrand, model,sn, fa, owner, responsible, dept, notes};
+  notes = chNotes;
+  const data = { selectBrand, model, sn, fa, owner, responsible, dept, notes };
 
   const pushDoc = async () => {
-    const docSnap = await setDoc(docRef,data);
-  console.log(docSnap.data())
-
+    const docSnap = await setDoc(docRef, data);
+    console.log(docSnap.data());
   };
-
-
-
 
   return (
     <Card sx={{ maxWidth: 200 }}>
@@ -58,14 +53,18 @@ const ItemCard = ({
           <Typography>Owner: {owner}</Typography>
           <Typography>Issuer: {responsible}</Typography>
           <Typography>Brand: {selectBrand}</Typography>
-          <Typography>Notes: {chNotes}</Typography>
-          <TextField value={chNotes}  onChange={(e) => setNt(e.target.value)}
+
+          <TextField
+            value={chNotes}
+            onChange={(e) => setNt(e.target.value)}
             fullWidth
-            label="notes"></TextField>
+            label="notes"
+            size="small"
+          ></TextField>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={()=>pushDoc()} size="small" color="primary">
+        <Button onClick={() => pushDoc()} size="small" color="primary">
           Save
         </Button>
       </CardActions>
