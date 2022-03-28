@@ -6,6 +6,7 @@ import { doc, collection, setDoc } from "firebase/firestore";
 import { Context } from "../index";
 import SelectItem from "./SelectItem";
 import SelectBrandName from "./SelectBrandName";
+import emailjs from "@emailjs/browser";
 
 const ItemForm = () => {
   const { firestore } = useContext(Context);
@@ -17,34 +18,47 @@ const ItemForm = () => {
   const [dept, setDept] = useState("");
   const [notes, setNotes] = useState("");
 
+  //Liffted state from SelectItem
 
-  
+  const [selectDevice, setDevice] = React.useState("Desktop");
 
-//Liffted state from SelectItem
+  const handleChangeDevice = (selectDevice) => {
+    setDevice(selectDevice);
+  };
 
-const [selectDevice, setDevice] = React.useState('Desktop');
+  //Liffted state from SelecBrandName
+  const [selectBrand, setBrand] = React.useState("Other");
 
-const handleChangeDevice = (selectDevice) => {
-  setDevice(selectDevice);
-};
+  const handleSelectBrand = (selectBrand) => {
+    setBrand(selectBrand);
+  };
 
-//Liffted state from SelecBrandName
-const [selectBrand, setBrand] = React.useState('Other');
+  //Function sends obj to Firebase
 
-const handleSelectBrand = (selectBrand) => {
-  setBrand(selectBrand);
-};
-
- //Function sends obj to Firebase
-
-const messagesRef = collection(firestore, selectDevice);
+  const messagesRef = collection(firestore, selectDevice);
 
   //Function sends obj to Firebase
 
   const sendObj = async () => {
-    const data = { selectBrand, model,sn, fa, owner, responsible, dept, notes };
+    const data = {
+      selectBrand,
+      model,
+      sn,
+      fa,
+      owner,
+      responsible,
+      dept,
+      notes,
+    };
     await setDoc(doc(messagesRef, sn), data);
+    sendEmail(data)
   };
+
+
+   //Function sends email
+   const sendEmail = async (data) => {
+     await emailjs.send('service_qnogk1b', 'template_o17mdlw', data, 'MQCV3zZGt6Nf6Pws1')
+   };
 
   const paperStyle = { padding: "30px 20px", width: 300, margin: "20px auto" };
 
@@ -58,9 +72,14 @@ const messagesRef = collection(firestore, selectDevice);
           </Typography>
         </Grid>
         <form>
-          <SelectItem handleChangeDevice = {handleChangeDevice.bind(this)} selectDevice={{selectDevice}}/>
-          <SelectBrandName handleSelectBrand = {handleSelectBrand.bind(this)} selectBrand={{selectBrand}}/>
-          
+          <SelectItem
+            handleChangeDevice={handleChangeDevice.bind(this)}
+            selectDevice={{ selectDevice }}
+          />
+          <SelectBrandName
+            handleSelectBrand={handleSelectBrand.bind(this)}
+            selectBrand={{ selectBrand }}
+          />
 
           <TextField
             onChange={(e) => setModel(e.target.value)}

@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 import { Context } from "../index";
 import SelectItem from "./SelectItem";
+import SelectOwner from "./SelectOwner";
 import ItemCard from "../FACards/ItemCard";
 import { async } from "@firebase/util";
 import { CSVLink, CSVDownload } from "react-csv";
@@ -27,13 +28,19 @@ const List = () => {
   const handleChangeDevice = (selectDevice) => {
     setDevice(selectDevice);
   };
+//Liffted state from SelectOwner
+const [selectOwner, setOwner] = React.useState("");
+const handleChangeOwner = (selectOwner) => {
+  setOwner(selectOwner);
+  console.log(selectOwner)
+};
 
   const { firestore } = useContext(Context);
   const col = collection(firestore, selectDevice);
 
 
   const pullCollection = async () => {
-    const q = query(col);
+    const q = query(col, where("owner", "==", selectOwner));
     const querySnapshot = await getDocs(q);
     const items = [];
     querySnapshot.forEach((doc) => {
@@ -81,6 +88,10 @@ console.log(firebaseArray);
       <SelectItem
         handleChangeDevice={handleChangeDevice.bind(this)}
         selectDevice={{ selectDevice }}
+      />
+      <SelectOwner
+        handleChangeOwner={handleChangeOwner.bind(this)}
+        selectOwner={{ selectOwner }}
       />
       <TextField onChange={(e)=>pullOnChange(e.target.value)} fullWidth label="Search"></TextField>
       <Button
